@@ -1,0 +1,602 @@
+{
+  "slides": [
+    [
+      "FamilyCheck",
+      "A calmer next step for older adults",
+      [
+        "PROJECT PRESENTATION",
+        "Aravindh P\nAM.SC.U4CYS23011\n\nRichu James\nAM.SC.U4CYS23036"
+      ],
+      [
+        "MOBILE APP DEVELOPMENT",
+        "Pause. Check. Connect.\n\nA Java/XML Android application for recording concerns and consulting a trusted person."
+      ]
+    ],
+    [
+      "The problem",
+      "Uncertainty needs a practical next step",
+      [
+        "THE SITUATION",
+        "An unexpected caller or message requests money, an OTP or immediate action.\n\nThe recipient needs a simple way to record the concern and ask for help."
+      ],
+      [
+        "OUR RESPONSE",
+        "Guide the user through warning signs, known contacts and follow-up records.\n\nThe app supports human judgement; it does not certify a message as safe."
+      ]
+    ],
+    [
+      "Project objectives",
+      "Useful functionality using basic Android concepts",
+      [
+        "FOR THE USER",
+        "Record a concerning interaction.\nNotice pressure and secrecy.\nContact someone already trusted.\nReview unresolved concerns later."
+      ],
+      [
+        "FOR THE COURSE",
+        "Activities and Fragments\nExplicit and implicit Intents\nCustom lists and local storage\nMenus, pickers and notifications"
+      ]
+    ],
+    [
+      "The user journey",
+      "From a concern to a recorded outcome",
+      [
+        "1  RECORD & REVIEW",
+        "Choose the source.\nDescribe the message or call.\nSelect warning signs.\nSave and open the check."
+      ],
+      [
+        "2  CONNECT & FOLLOW UP",
+        "Edit the sharing preview or call a trusted contact.\nVerify the claim independently.\nRecord an outcome and note.\nSet a reminder if needed."
+      ]
+    ],
+    [
+      "Four tabs",
+      "A compact interface with larger-text support",
+      [
+        "HOME + CHECKS",
+        "Home: start a check, view follow-ups and call a trusted person.\n\nChecks: search messages/notes, filter outcomes and sort by date."
+      ],
+      [
+        "PEOPLE + LEARN",
+        "People: add, edit, search and favourite contacts; open dialer or SMS.\n\nLearn: awareness cards and a five-question practice quiz."
+      ]
+    ],
+    [
+      "System architecture",
+      "Local screens, local data and Android services",
+      [
+        "SCREENS & LOGIC",
+        "MainActivity + DashboardFragment\nCheckActivity + DetailActivity\nContactDialog + CardAdapter\nQuizActivity + ReminderActivity"
+      ],
+      [
+        "DATA & INTEGRATION",
+        "SQLite: checks and contacts\nSharedPreferences: settings\nIntents: sharing and phone apps\nAlarmManager + NotificationManager"
+      ]
+    ],
+    [
+      "Database design",
+      "Two independent SQLite tables",
+      [
+        "CASES",
+        "_id: primary key\nmessage, flags, source\nstatus, note\ncreated: timestamp\n\nStores concerns and outcomes."
+      ],
+      [
+        "CONTACTS",
+        "_id: primary key\nname, phone, relationship\nfavorite: 0 or 1\n\nNo case-to-contact link is stored."
+      ]
+    ],
+    [
+      "Intents in action",
+      "Communication inside and outside the app",
+      [
+        "EXPLICIT INTENTS",
+        "CheckActivity opens DetailActivity.\nThe saved case ID is an extra.\nA notification opens the Checks tab.\n\nTarget Activities read the extras."
+      ],
+      [
+        "IMPLICIT INTENTS",
+        "ACTION_SEND: share/receive text\nACTION_DIAL: open dialer\nACTION_SENDTO: compose SMS\nACTION_VIEW: open guidance\n\nThe user completes the action."
+      ]
+    ],
+    [
+      "Added functionality",
+      "Small features that support the core workflow",
+      [
+        "LEARN & READ",
+        "Five practice scenarios\nFeedback, score and retry\nQuiz state saved across rotation\n\nLarger-text preference stored locally"
+      ],
+      [
+        "FOLLOW UP",
+        "Date and time pickers\nOne general reminder\nTest notification and cancellation\n\nLocal notifications, not remote push"
+      ]
+    ],
+    [
+      "Syllabus coverage",
+      "Units 1–3 applied in a single project",
+      [
+        "UNITS 1 & 2",
+        "Java and project structure\nViews, layouts and drawables\nListView, GridView and adapters\nToolbar, menus and Spinner\nActivity/Fragment lifecycle"
+      ],
+      [
+        "UNIT 3",
+        "Explicit and implicit Intents\nData transfer through extras\nLeft navigation panel\nDialogs and Toast feedback\nNotificationManager and permissions"
+      ]
+    ],
+    [
+      "Verification status",
+      "Source checks passed; runtime validation is pending",
+      [
+        "COMPLETED CHECKS",
+        "Java syntax: 13 source files\nXML parsing: 6 files\nResource and manifest references\nSQLite CRUD and favourite ordering\nUnicode and apostrophe test data"
+      ],
+      [
+        "OUTSTANDING CHECKS",
+        "SDK access blocked compilation/lint.\nadb access blocked device testing.\n\nBuild, installation, visual checks and reminder delivery need validation."
+      ]
+    ],
+    [
+      "Conclusion & next steps",
+      "A focused Android course project",
+      [
+        "PROJECT CONTRIBUTION",
+        "A pause → check → connect workflow.\nCore Android concepts applied to a practical interaction problem.\n\nNo backend or automatic fraud verdict."
+      ],
+      [
+        "NEXT STEPS",
+        "Complete build and device testing.\nEvaluate readability with older users.\nConsider regional languages and per-case reminders.\n\nThank you — Questions?"
+      ]
+    ]
+  ],
+  "pages": [
+    [
+      "FamilyCheck",
+      [
+        [
+          "sub",
+          "A scam-awareness and trusted-contact Android application"
+        ],
+        [
+          "h",
+          "PROJECT REPORT"
+        ],
+        [
+          "p",
+          "Subject: Mobile App Development\n\nSubmitted by\nAravindh P — AM.SC.U4CYS23011\nRichu James — AM.SC.U4CYS23036\n\nReport date: 29 October 2026"
+        ],
+        [
+          "h",
+          "Project overview"
+        ],
+        [
+          "p",
+          "FamilyCheck helps an older adult record a concerning message or call, select warning signs and consult someone they trust. It combines a guided checking workflow, locally saved records, trusted contacts, awareness content and optional follow-up notifications."
+        ],
+        [
+          "p",
+          "The project uses Java, XML and SQLite with standard Android components. It is an educational support tool rather than an automatic scam detector or emergency service."
+        ],
+        [
+          "h",
+          "Contents"
+        ],
+        [
+          "p",
+          "1. Introduction and objectives\n2. Requirements and functional modules\n3. Architecture and workflow\n4. Database and implementation\n5. Interface and syllabus mapping\n6. Testing, privacy and limitations\n7. Conclusion and future scope"
+        ]
+      ]
+    ],
+    [
+      "1. Introduction and objectives",
+      [
+        [
+          "h",
+          "Abstract"
+        ],
+        [
+          "p",
+          "FamilyCheck is an Android application intended to help senior citizens respond more carefully to suspicious calls and messages. A guided form captures an interaction and manually selected warning signs. Users can then open a known contact, review a sharing preview and save their own assessment. Searchable history, favourite contacts, awareness cards, an offline quiz and local reminders extend the workflow."
+        ],
+        [
+          "p",
+          "The implementation uses Java, XML, Activities, a Fragment, native Android widgets and SQLite. External messaging and dialer applications handle communication through Intents. The app neither monitors communications nor automatically classifies messages as safe or fraudulent."
+        ],
+        [
+          "h",
+          "Problem statement"
+        ],
+        [
+          "p",
+          "An unexpected request can create uncertainty about identity, urgency and the correct next action. The user may need a simple way to keep the details and ask another person. The project addresses this interaction problem through a small sequence of actions, rather than a complex automated detection system."
+        ],
+        [
+          "h",
+          "Objectives"
+        ],
+        [
+          "b",
+          "Provide a clear form for recording messages and calls."
+        ],
+        [
+          "b",
+          "Highlight concerns such as pressure, secrecy and requests for private codes."
+        ],
+        [
+          "b",
+          "Make known contacts accessible for voluntary calls, SMS and sharing."
+        ],
+        [
+          "b",
+          "Preserve checks and outcomes for follow-up."
+        ],
+        [
+          "b",
+          "Demonstrate the basic components in the Mobile App Development syllabus."
+        ],
+        [
+          "h",
+          "Scope"
+        ],
+        [
+          "p",
+          "The application works on one device, with no login, backend or family synchronisation. Effectiveness in preventing scams has not been measured. No claim of production readiness or global novelty is made."
+        ]
+      ]
+    ],
+    [
+      "2. Requirements and modules",
+      [
+        [
+          "h",
+          "Development environment"
+        ],
+        [
+          "p",
+          "The source project is intended for Android Studio with Java 17 compatibility. Its configuration sets minimum API 26, target API 36 and compile SDK 36.1. The existing build uses AGP 9.3.2 and Gradle 9.5.0. SDK availability and Gradle sync must be checked before execution."
+        ],
+        [
+          "h",
+          "Functional modules"
+        ],
+        [
+          "b",
+          "Home: start a check, see unresolved-check count, call a trusted person and open practice."
+        ],
+        [
+          "b",
+          "Guided check: choose a source, enter a description and select five possible warning signs. Shared text can prefill the description."
+        ],
+        [
+          "b",
+          "Check history: search messages/notes, filter outcomes and reverse date ordering."
+        ],
+        [
+          "b",
+          "Case details: view the concern, edit a sharing preview, record an outcome/note and delete after confirmation."
+        ],
+        [
+          "b",
+          "Trusted people: add/edit/remove contacts, store relationships, mark favourites, search and open calling/SMS apps."
+        ],
+        [
+          "b",
+          "Learning: six awareness cards and a five-question offline practice quiz with feedback, scoring and retry."
+        ],
+        [
+          "b",
+          "Reminders: date/time selection, one general follow-up, cancellation and a test notification."
+        ],
+        [
+          "h",
+          "Usability and persistence"
+        ],
+        [
+          "p",
+          "The interface uses a restrained navy-and-teal palette, large controls and rounded cards. A larger-text preference is saved on the device. SQLite preserves records after the app closes. Blank concerns and invalid contact numbers are rejected; actual readability and behaviour still require device testing."
+        ],
+        [
+          "h",
+          "Permissions"
+        ],
+        [
+          "p",
+          "The app requests notification permission where required and registers a boot receiver to restore the reminder. It does not request access to read SMS, monitor calls or read the system address book. No external UI library is required."
+        ]
+      ]
+    ],
+    [
+      "3. Architecture and workflow",
+      [
+        [
+          "h",
+          "Component responsibilities"
+        ],
+        [
+          "p",
+          "MainActivity owns the toolbar, bottom tabs, navigation panel and reading settings. DashboardFragment constructs Home, Checks, People and Learn. BaseActivity and Ui provide shared screen construction and styling."
+        ],
+        [
+          "p",
+          "CheckActivity and DetailActivity manage the concern-to-outcome workflow. ContactDialog handles contact input and validation. CardAdapter binds records to custom rows. QuizActivity handles practice state. ReminderActivity and ReminderReceiver manage scheduling and notification delivery."
+        ],
+        [
+          "h",
+          "Data and service layers"
+        ],
+        [
+          "p",
+          "Db extends SQLiteOpenHelper for local records. SharedPreferences stores text-size settings and reminder time. Intents connect to other screens and phone applications. AlarmManager schedules an inexact alarm; NotificationManager posts a local notification."
+        ],
+        [
+          "h",
+          "Typical workflow"
+        ],
+        [
+          "b",
+          "1. Enter a concern or receive shared text from another app."
+        ],
+        [
+          "b",
+          "2. Choose the interaction source and relevant warning signs."
+        ],
+        [
+          "b",
+          "3. Validate the description and insert a case into SQLite."
+        ],
+        [
+          "b",
+          "4. Open the detail screen using the case ID in an explicit Intent."
+        ],
+        [
+          "b",
+          "5. Review sharing content or call someone already trusted."
+        ],
+        [
+          "b",
+          "6. Record Still unsure, Reported as suspicious or Verified independently."
+        ],
+        [
+          "b",
+          "7. Set a general follow-up reminder if needed."
+        ],
+        [
+          "h",
+          "Lifecycle and communication boundaries"
+        ],
+        [
+          "p",
+          "The Fragment refreshes data when resumed and closes its database helper on destruction. Relevant form, quiz, filter and reminder state is preserved during recreation. The app cannot observe whether an external message was sent or a call answered, so it does not automatically change the case outcome after launching another app."
+        ]
+      ]
+    ],
+    [
+      "4. Database and implementation",
+      [
+        [
+          "h",
+          "SQLite schema"
+        ],
+        [
+          "p",
+          "cases\n_id — INTEGER PRIMARY KEY AUTOINCREMENT\nmessage, flags, source, status, note — TEXT NOT NULL\ncreated — INTEGER NOT NULL (timestamp)"
+        ],
+        [
+          "p",
+          "contacts\n_id — INTEGER PRIMARY KEY AUTOINCREMENT\nname, phone, relationship — TEXT NOT NULL\nfavorite — INTEGER NOT NULL DEFAULT 0"
+        ],
+        [
+          "p",
+          "These tables are independent. A case does not store its recipient and no foreign-key relationship connects cases and contacts. Reminder time and reading preferences are stored in SharedPreferences."
+        ],
+        [
+          "h",
+          "CRUD and ordering"
+        ],
+        [
+          "p",
+          "ContentValues supplies inserted and updated values. Update and delete operations use selection arguments. Cursors are closed after reading. Contacts are ordered by favourite status and name; cases initially use descending creation time. The displayed list applies search, outcome filtering and optional reverse ordering."
+        ],
+        [
+          "h",
+          "Adapters and Intents"
+        ],
+        [
+          "p",
+          "CardAdapter extends BaseAdapter. It inflates list_card.xml when a recycled view is unavailable, then binds the badge, title and subtitle. It supports custom ListView rows and the learning GridView. Explicit Intents pass a case ID or tab index. Implicit Intents support sharing, the dialer, SMS composition and browser guidance. Missing compatible apps produce a Toast."
+        ],
+        [
+          "h",
+          "Validation rules"
+        ],
+        [
+          "p",
+          "Descriptions are required and limited to 5,000 characters; notes are limited to 2,000. Contact names are required. Phone numbers accept 6–15 digits with an optional leading plus after common separators are removed. The Verified independently outcome requires an explanatory note."
+        ]
+      ]
+    ],
+    [
+      "5. Interface and syllabus mapping",
+      [
+        [
+          "h",
+          "Interface design"
+        ],
+        [
+          "p",
+          "Four bottom tabs keep main destinations visible. A toolbar button opens a left navigation panel. Options and submenu items expose additional actions and reading settings. Long-press context menus support record actions. Empty states explain how to begin, and the larger-text preference supplements system font scaling."
+        ],
+        [
+          "h",
+          "Unit 1 — Android foundations"
+        ],
+        [
+          "p",
+          "The project demonstrates Java source classes, XML resources, a manifest, an application ID and Gradle configuration. Android Studio setup, SDK selection, running on an emulator or phone, and APK generation are part of the intended course demonstration. A successful APK build remains unverified."
+        ],
+        [
+          "h",
+          "Unit 2 — UI and lifecycle"
+        ],
+        [
+          "b",
+          "Views/layouts/drawables: forms, buttons, cards and XML screen/row layouts."
+        ],
+        [
+          "b",
+          "ListView/GridView/adapters: repeated record rows and awareness cards."
+        ],
+        [
+          "b",
+          "Menus: toolbar options, Help & settings submenu and context menus."
+        ],
+        [
+          "b",
+          "Pickers/Spinner: date/time, concern source and case outcome."
+        ],
+        [
+          "b",
+          "Activities/Fragments: navigation, resumed-data refresh and saved state."
+        ],
+        [
+          "h",
+          "Unit 3 — Communication and notifications"
+        ],
+        [
+          "p",
+          "Explicit and implicit Intents demonstrate internal navigation and external app communication. Extras transfer identifiers between Activities. The navigation panel demonstrates a drawer using standard views. AlertDialog and Toast provide interaction feedback. NotificationManager, channels, PendingIntent and permission handling support local reminders."
+        ],
+        [
+          "h",
+          "Scope decisions"
+        ],
+        [
+          "p",
+          "Remote push notifications are not implemented: there is no server or Firebase integration. A blocking ProgressDialog is not needed for this local workflow. Legacy platform Fragments keep the project dependency-free; a future production version could migrate to AndroidX."
+        ]
+      ]
+    ],
+    [
+      "6. Testing, privacy and limitations",
+      [
+        [
+          "h",
+          "Completed checks"
+        ],
+        [
+          "b",
+          "Java syntax parsing passed for 13 source files."
+        ],
+        [
+          "b",
+          "Six XML files parsed; resource references and manifest component names were checked."
+        ],
+        [
+          "b",
+          "SQLite schema creation and CRUD smoke checks passed."
+        ],
+        [
+          "b",
+          "Favourite ordering, Unicode text and apostrophes were included in database checks."
+        ],
+        [
+          "h",
+          "Outstanding validation"
+        ],
+        [
+          "p",
+          "APK compilation and lint were attempted but blocked before Java compilation because access to installed SDK metadata was denied. Running adb was also denied. Syntax checks do not establish Android type correctness, installation success, visual quality or runtime behaviour. No verified working APK or device-test result is claimed."
+        ],
+        [
+          "h",
+          "Pending acceptance tests"
+        ],
+        [
+          "b",
+          "Build, install and launch; create/update/delete records and restart the app."
+        ],
+        [
+          "b",
+          "Verify search, filters, favourites, contact validation and missing external apps."
+        ],
+        [
+          "b",
+          "Rotate during forms and the quiz; test large text and landscape layouts."
+        ],
+        [
+          "b",
+          "Test notification permission granted/denied, disabled channels, replacement, cancellation and reboot restoration."
+        ],
+        [
+          "h",
+          "Privacy and operational limits"
+        ],
+        [
+          "p",
+          "Records remain in private app storage unless voluntarily shared. Backups are disabled. The app does not read SMS, monitor calls or access the phone’s address book. No additional encryption layer is implemented, and uninstalling removes the data. Users are asked not to enter passwords, OTPs or account details."
+        ],
+        [
+          "p",
+          "There is one general reminder, not one per case. Android may delay delivery; force-stop or disabled notifications can prevent it. FamilyCheck does not synchronise family responses, file fraud reports, provide emergency support or guarantee recognition of scams."
+        ]
+      ]
+    ],
+    [
+      "7. Conclusion and future scope",
+      [
+        [
+          "h",
+          "Conclusion"
+        ],
+        [
+          "p",
+          "FamilyCheck applies the foundations of Mobile App Development to a practical interaction problem. It gives users a structured sequence: pause, record a concern, notice warning signs, contact someone trusted and save the outcome. Local storage and existing phone apps keep the architecture manageable for a basic Java/XML project."
+        ],
+        [
+          "p",
+          "The documented implementation includes navigation, adapters, guided checks, contacts, practice and reminders. Source-level validation is complete; build and runtime validation remain necessary. Accessibility and practical benefit should be evaluated with real users after the application runs reliably."
+        ],
+        [
+          "h",
+          "Future improvements"
+        ],
+        [
+          "b",
+          "Complete compilation, lint and device testing first."
+        ],
+        [
+          "b",
+          "Evaluate text sizes, labels and navigation with older adults."
+        ],
+        [
+          "b",
+          "Add regional languages and optional text-to-speech."
+        ],
+        [
+          "b",
+          "Introduce per-case reminders and reminder history."
+        ],
+        [
+          "b",
+          "Consider user-controlled backup/export and AndroidX migration."
+        ],
+        [
+          "h",
+          "Classroom demonstration"
+        ],
+        [
+          "p",
+          "Add a test contact and favourite it. Save a fictional pressure/secrecy message and review its details. Open and cancel the sharing chooser. Demonstrate search, filtering, a quiz question, larger text and a test notification. Avoid real private data and unintended messages or calls."
+        ],
+        [
+          "h",
+          "Project sources"
+        ],
+        [
+          "p",
+          "1. FamilyCheck/README.md — scope, build instructions and verification status.\n2. app/src/main/java/org/familycheck/senior/ — implementation.\n3. AndroidManifest.xml and res/ — components and resources.\n4. Mobile App Development Units 1–3 — supplied syllabus."
+        ],
+        [
+          "p",
+          "Prepared for Aravindh P and Richu James. No supervisor, approval, user-study result or successful runtime test has been invented."
+        ]
+      ]
+    ]
+  ]
+}
